@@ -1,0 +1,246 @@
+/* 기본 스크롤 & 스크롤바 */
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #05070d;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+  border-radius: 9999px;
+}
+
+/* 히어로 배경 그리드 패턴 */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+/* 헤더 스크롤 상태 */
+#site-header.scrolled {
+  background-color: rgba(10, 14, 26, 0.75);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* 네비게이션 활성 링크 */
+.nav-link.active {
+  color: #fff;
+  position: relative;
+}
+
+/* 스크롤 등장 애니메이션 대상 초기 상태 */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* About 통계 카드 */
+.stat-card {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.stat-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+/* Skills 진행률 바 */
+.skill-bar {
+  width: 100%;
+  height: 8px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+.skill-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  transition: width 1.2s ease;
+}
+.skill-item.visible .skill-fill {
+  width: var(--w);
+}
+
+/* 프로젝트 카드 */
+.project-card {
+  padding: 2rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  border-image: linear-gradient(135deg, #3b82f6, #8b5cf6, #22c55e) 1;
+  border-color: transparent;
+  box-shadow: 0 12px 30px rgba(59, 130, 246, 0.15);
+}
+
+/* 기술 태그 */
+.tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+}
+
+/* 히어로 차트 카드 */
+.chart-card {
+  box-shadow: 0 20px 60px rgba(59, 130, 246, 0.12);
+  animation: card-float 6s ease-in-out infinite;
+}
+@keyframes card-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* 우상향 라인차트 draw-in 애니메이션 */
+#uptrend-path {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: draw-line 2.2s 0.3s ease forwards;
+}
+@keyframes draw-line {
+  to { stroke-dashoffset: 0; }
+}
+
+/* 차트 끝점 ping 효과 */
+.ping-dot {
+  animation: ping-scale 1.8s ease-out infinite;
+}
+@keyframes ping-scale {
+  0% { transform: scale(1); opacity: 0.5; }
+  75%, 100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* LIVE 표시 점 */
+.live-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+  animation: live-pulse 1.6s infinite;
+}
+@keyframes live-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* 히어로 우측 카드 위 떠다니는 배지 */
+.floating-badge {
+  animation: card-float 6s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+/* 하단 티커 테이프 */
+.ticker-track {
+  width: max-content;
+  animation: ticker-scroll 28s linear infinite;
+}
+.ticker-item {
+  padding: 0 1.75rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* 백테스팅 대시보드 쇼케이스 */
+.filter-select {
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+.filter-tag {
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  background: rgba(34, 197, 94, 0.07);
+  color: #86efac;
+  font-size: 0.72rem;
+  line-height: 1.3;
+}
+
+.tab-pill {
+  padding: 0.4rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  border: 1px solid transparent;
+}
+.tab-pill-active {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.heat-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.heatmap th,
+.heatmap td {
+  padding: 0.5rem 0.4rem;
+}
+.heatmap td {
+  border-radius: 0.4rem;
+  font-weight: 600;
+}
+
+.metric-chip {
+  padding: 1rem;
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: center;
+}
+
+/* 연락처 버튼 */
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.contact-btn:hover {
+  border-color: transparent;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #22c55e);
+  color: #fff;
+  transform: translateY(-2px);
+}

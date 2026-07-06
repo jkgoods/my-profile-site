@@ -142,3 +142,22 @@ function renderHeatmap() {
 }
 
 renderHeatmap();
+
+// 카운터 컴포넌트: 증가/감소 버튼으로 값 변경 (여러 개 있어도 각각 독립 동작)
+document.querySelectorAll('.counter-widget').forEach((widget) => {
+  const valueEl = widget.querySelector('[data-role="value"]');
+  let count = parseInt(widget.dataset.count, 10) || 0;
+
+  function render() {
+    valueEl.textContent = count;
+  }
+
+  widget.querySelectorAll('.counter-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      count += btn.dataset.action === 'increment' ? 1 : -1;
+      render();
+    });
+  });
+
+  render();
+});
